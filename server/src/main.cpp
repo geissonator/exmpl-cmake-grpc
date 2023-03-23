@@ -2,6 +2,7 @@
 #include <myproto/addressbook.grpc.pb.h>
 
 #include <grpc/grpc.h>
+#include <grpcpp/grpcpp.h>
 #include <grpcpp/server_builder.h>
 
 #include <iostream>
@@ -15,7 +16,7 @@ class AddressBookService final : public expcmake::AddressBook::Service {
             response->set_name("Peter Peterson");
             response->set_zip("12345");
             response->set_country("Superland");
-            
+
             return grpc::Status::OK;
         }
 };
@@ -30,6 +31,6 @@ int main(int argc, char* argv[])
 
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
     server->Wait();
-    
+
     return 0;
 }
